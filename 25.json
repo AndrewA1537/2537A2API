@@ -1,0 +1,31 @@
+{
+    "_id": {
+        "$oid": "627c7ad4a1c1603c0f65d6cc"
+    },
+    "id": {
+        "$numberInt": "25"
+    },
+    "name": "pikachu",
+    "weight": {
+        "$numberLong": "60"
+    },
+    "height": {
+        "$numberInt": "4"
+    },
+    "type": "electric",
+    "hp": {
+        "$numberInt": "35"
+    },
+    "attack": {
+        "$numberInt": "55"
+    },
+    "defense": {
+        "$numberInt": "40"
+    },
+    "speed": {
+        "$numberInt": "90"
+    },
+    "specialattack": {
+        "$numberInt": "50"
+    }
+}

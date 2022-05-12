@@ -1,0 +1,31 @@
+{
+    "_id": {
+        "$oid": "627c7c65a1c1603c0f65d6cf"
+    },
+    "id": {
+        "$numberInt": "1"
+    },
+    "name": "bulbasaur",
+    "weight": {
+        "$numberInt": "69"
+    },
+    "height": {
+        "$numberInt": "7"
+    },
+    "type": "grass",
+    "hp": {
+        "$numberInt": "45"
+    },
+    "attack": {
+        "$numberInt": "49"
+    },
+    "defense": {
+        "$numberInt": "49"
+    },
+    "speed": {
+        "$numberInt": "45"
+    },
+    "specialattack": {
+        "$numberInt": "65"
+    }
+}
