@@ -11,99 +11,54 @@ app.use(bodyparser.urlencoded({
 app.set("view engine", "ejs");
 app.use(express.static("./public"));
 
-app.listen(process.env.PORT || 3000, function(err) {
+app.listen(process.env.PORT || 7000, function(err) {
     if (err) console.log(err);
 });
 
+// access the db locally through docker
+// mongoose.connect("mongodb://localhost:27017/pokemon", {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//     authSource: 'admin',
+//     user: 'root',
+//     pass: '1234'
+// });
+
 // connect to mongoDB
-// mongoose.connect('mongodb+srv://COMP1537:comp1537@cluster0.q9ny3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { 
-// connect locally
-mongoose.connect("mongodb://localhost:27017/timeline", {
+mongoose.connect('mongodb+srv://COMP1537:comp1537@cluster0.q9ny3.mongodb.net/pokemon?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-
-    // for online
-    // authSource: 'admin',
-    // user: 'COMP1537',
-    // pass: 'comp1537'
-
-    // for local
     authSource: 'admin',
-    user: 'root',
-    pass: '1234'
+    user: 'COMP1537',
+    pass: 'comp1537'
 });
 
-const eventSchema = new mongoose.Schema({
-    text: String,
-    hits: Number,
-    time: String
+const pokemonSchema = new mongoose.Schema({
+    id: Number,
+    name: String,
+    height: Number,
+    weight: Number,
+    type: String,
+    hp: Number,
+    attack: Number,
+    defense: Number,
+    speed: Number,
+    specialattack: Number,
 });
-const eventModel = mongoose.model("timelines", eventSchema);
+const pokemonModel = mongoose.model("pokemons", pokemonSchema);
 
 // test routes for CRUD
 
-// Create or insert
-app.put('/timeline/create', function(req, res) {
-    console.log(req.body)
-    eventModel.create({
-        text: req.body.text,
-        time: req.body.time,
-        hits: req.body.hits
-
-    }, function(err, data) {
-        if (err) {
-            console.log("Error " + err);
-        } else {
-            console.log("Data from /timeline/getAllEvents: \n" + data);
-        }
-        res.json(data);
-    });
-});
-
 // Read 
-app.get('/timeline/getAllEvents', function(req, res) {
+app.get('/search', function(req, res) {
 
-    eventModel.find({}, function(err, data) {
+    pokemonModel.find({}, function(err, data) {
         if (err) {
             console.log("Error " + err);
         } else {
-            console.log("Data from /timeline/getAllEvents: \n" + data);
+            console.log("Data from /search: \n" + data);
         }
         res.send(data);
-    });
-});
-
-// Update
-app.get('/timeline/update/:id', function(req, res) {
-    console.log(req.params)
-    eventModel.updateOne({
-            _id: req.params.id
-        }, {
-            $inc: { hits: 1 }
-        },
-
-        function(err, data) {
-            if (err) {
-                console.log("Error " + err);
-            } else {
-                console.log("Data from /timeline/update/:id: \n" + data);
-            }
-            res.send("Update is good");
-        });
-});
-
-// Update
-app.get('/timeline/remove/:id', function(req, res) {
-    console.log(req.params)
-    eventModel.remove({
-        _id: req.params.id
-    }, function(err, data) {
-        if (err) {
-            console.log("Error " + err);
-        } else {
-            console.log("Data from /timeline/update/:id: \n" + data);
-        }
-        res.send("Remove is good");
     });
 });
 

@@ -1,6 +1,6 @@
 function loadEvents() {
     $.ajax({
-        url: `http://localhost:3000/timeline/getAllEvents`,
+        url: `http://localhost:7000/timeline/getAllEvents`,
         type: "GET",
         success: (x) => {
             console.log(x);
@@ -27,7 +27,7 @@ function loadEvents() {
 function incrementHits() {
     x = this.id;
     $.ajax({
-        url: `http://localhost:3000/timeline/update/${x}`,
+        url: `http://localhost:7000/timeline/update/${x}`,
         type: "GET",
         sucess: (e) => (console.log(e))
     });

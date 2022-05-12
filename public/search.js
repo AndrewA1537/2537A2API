@@ -65,7 +65,7 @@ var formatted = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds()
 
 function insertTypeTimeline(pokeType) {
     $.ajax({
-        url: `http://localhost:3000/timeline/create`,
+        url: `http://localhost:7000/timeline/create`,
         type: "PUT",
         data: {
             text: `Client searched by Type: ${pokeType}`,
@@ -81,7 +81,7 @@ function insertTypeTimeline(pokeType) {
 function insertSearchTimeline(pokeName) {
     pokeName = $("#poke_name").val();
     $.ajax({
-        url: `http://localhost:3000/timeline/create`,
+        url: `http://localhost:7000/timeline/create`,
         type: "PUT",
         data: {
             text: `Client searched for: ${pokeName}`,
