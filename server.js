@@ -11,7 +11,7 @@ app.listen(process.env.PORT || 7000, function(err) {
 
 // routes
 
-app.get('/pokemon/1', function(res) {
+app.get('/', function(res) {
     res.send(bulbasaur);
 });
 
